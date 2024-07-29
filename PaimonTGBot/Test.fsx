@@ -17,6 +17,6 @@ let getChatResponse (config: Config) (message: string) =
 let client =
     Config(
         { Endpoint = "https://api.deepseek.com";
-                   ApiKey = "sk-c16e462dc1034ad1852124ac61c3dbeb"},
+                   ApiKey = "sk-c16e462dc1034ad1852124ac61c3dbec"},
                  HttpRequester()
     )

@@ -8,7 +8,7 @@ open OpenAI.Client
 open OpenAI.Chat
 
 [<Literal>]
-let TokenFileName = "ai-token."
+let TokenFileName = "ai-token"
 
 let propmtPrefix propmt  = sprintf "%s" propmt
 
