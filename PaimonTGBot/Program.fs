@@ -2,6 +2,7 @@
 
 open System
 open PaimonTGBot
+open PaimonTGBot.Commands
 open Funogram.Api
 open Funogram.Telegram
 open Funogram.Telegram.Bot
@@ -19,11 +20,13 @@ type ConsoleLogger(color: ConsoleColor) =
 [<EntryPoint>]
 let main _ =
   async {
-    let config = Config.defaultConfig |> Config.withReadTokenFromFile
-    let config =
-      { config with
+    let aiConfig = Aichat.defaultAichatConfig |> Aichat.withReadTokenFromFile
+    let config: PaimonTGBot.GConfig.Config = {openAIApiConfig = aiConfig}
+    let botConfig = Config.defaultConfig |> Config.withReadTokenFromFile
+    let botConfig =
+      { botConfig with
           RequestLogger = Some (ConsoleLogger(ConsoleColor.Green)) }
-    let! _ = Api.deleteWebhookBase () |> api config
-    return! startBot config Commands.Base.updateArrived None
+    let! _ = Api.deleteWebhookBase () |> api botConfig
+    return! startBot botConfig (Commands.Base.updateArrived config) None
   } |> Async.RunSynchronously
   0

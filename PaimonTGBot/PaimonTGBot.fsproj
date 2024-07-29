@@ -1,18 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-	<Compile Include="Commands\Base.fs" />
+	<Compile Include="Datebase.fs">
+      <Visible>False</Visible>
+    </Compile>
+	<Compile Include="GConfig.fs" />
+    <Compile Include="Utils\Other.fs" />
+    <Compile Include="Utils\Bot.fs" />
+    <Compile Include="Utils\Markdown.fs" />
+    <Compile Include="Utils\SendMessage.fs" />
+    <Compile Include="Commands\CmdEcho.fs" />
+    <Compile Include="Commands\Aichat.fs" />
+    <Compile Include="Commands\Base.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Funogram" Version="3.0.1" />
     <PackageReference Include="Funogram.Telegram" Version="7.7.0" />
+    <PackageReference Include="OpenAI.Client" Version="0.2.0" />
+    <PackageReference Include="SqlHydra.Query" Version="2.5.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
-
 </Project>
