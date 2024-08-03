@@ -18,7 +18,7 @@ let defaultAichatConfig =
 
 let withReadTokenFromFile config =
     if File.Exists(TokenFileName) then
-        { config with ApiKey = File.ReadAllText(TokenFileName) }
+        { config with ApiKey = File.ReadAllText(TokenFileName).Replace("\n", "").Replace("\r", "") }
     else
         printf "Please, enter ai token: "
         let token = Console.ReadLine()

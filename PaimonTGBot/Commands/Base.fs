@@ -15,7 +15,7 @@ open PaimonTGBot.Commands.Aichat
 
 let updateArrived (config: PaimonTGBot.GConfig.Config) (ctx: UpdateContext) =
     let wrap fn =
-        let fromId () = ctx.Update.Message.Value.From.Value.Id
+        let fromId () = ctx.Update.Message.Value.Chat.Id
         fn ctx.Config (fromId ())
     match ctx with
     | { Update = { Message = Some { Text = Some text } } } when text.StartsWith "/chat " ->
