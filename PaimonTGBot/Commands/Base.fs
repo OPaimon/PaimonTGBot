@@ -19,7 +19,7 @@ let updateArrived (config: PaimonTGBot.GConfig.Config) (ctx: UpdateContext) =
         fn ctx.Config (fromId ())
     match ctx with
     | { Update = { Message = Some { Text = Some text } } } when text.StartsWith "/chat " ->
-        text.Substring(5) |> Aichat.getChatResponse config.openAIApiConfig |> sendMessagePlainText |> wrap
+        text.Substring(5) |> Aichat.getChatResponseAsync config.openAIApiConfig |> Async.RunSynchronously |> sendMessagePlainText |> wrap
     | _ -> ()
 
     cmdEcho ctx
